@@ -104,7 +104,7 @@ export function Navbar() {
           transition={{ duration: 0.3, ease: EASE }}
         >
           {/* Logo — always the fixed left anchor of the header row */}
-          <Link href="/" aria-label="Nexora home" className="flex items-center relative z-10">
+          <Link href="/" aria-label="Nexora home" className="flex items-center">
             <Image
               src="/logo/nexora-mark.png"
               alt="Nexora"
@@ -152,58 +152,64 @@ export function Navbar() {
             <button className="btn-primary focus-visible-ring">Book a Demo</button>
           </div>
 
-          {/*
-            Single mobile menu toggle — this is the ONLY hamburger/close button
-            in the entire component. It never unmounts and never duplicates;
-            it just swaps its icon and stays fixed in the same top-right slot
-            at all times, in front of the overlay (z-[70] > overlay's z-[60]).
-            The circular surface is opaque in both themes so it never blends
-            into hero content behind it.
-          */}
-          <button
-            ref={menuButtonRef}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            className="md:hidden relative z-[70] w-12 h-12 rounded-full flex items-center justify-center
-                       bg-bg-secondary border border-border shadow-md
-                       focus-visible-ring overflow-hidden"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {menuOpen ? (
-                <motion.span
-                  key="close-icon"
-                  initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
-                  transition={{ duration: 0.22, ease: EASE }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <X size={20} />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu-icon"
-                  initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
-                  transition={{ duration: 0.22, ease: EASE }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <Menu size={20} />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
+          {/* Mobile: empty spacer so the logo stays left-aligned; the real
+              toggle button below is deliberately rendered OUTSIDE this nav
+              element so it can never be trapped inside nav's stacking context. */}
+          <div className="md:hidden w-12 h-12" aria-hidden="true" />
         </motion.div>
       </motion.nav>
 
       {/*
-        Overlay sits below the toggle button in stacking order (z-[60] vs
-        button's z-[70]), so the button is always visible and never covered
-        or duplicated. Solid, near-opaque background + blur — hero content
-        must not show through.
+        FIX: this button previously lived inside <nav>, which creates its
+        own stacking context at z-50. A z-index set on a child only competes
+        within that context — it does NOT out-rank a sibling element outside
+        <nav> that has a higher z-index (the overlay, z-[60]). That mismatch
+        is why the close icon visually disappeared once the overlay mounted.
+        Rendering the button as a top-level fixed element with z-[100],
+        completely independent of <nav>'s stacking context, guarantees it is
+        always the topmost interactive element, open or closed.
+      */}
+      <button
+        ref={menuButtonRef}
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-menu"
+        className="md:hidden fixed top-5 right-5 z-[100] w-12 h-12 rounded-full flex items-center justify-center
+                   bg-bg-secondary border border-border shadow-md
+                   focus-visible-ring overflow-hidden"
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {menuOpen ? (
+            <motion.span
+              key="close-icon"
+              initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <X size={20} />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="menu-icon"
+              initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <Menu size={20} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </button>
+
+      {/*
+        Overlay: z-[60], deliberately lower than the button's z-[100], and
+        now that the button lives outside <nav> entirely, there is no
+        stacking-context mismatch left to hide it.
       */}
       <AnimatePresence>
         {menuOpen && (
@@ -219,12 +225,7 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: EASE }}
           >
-            <motion.div
-              className="flex flex-col gap-6"
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
+            <motion.div className="flex flex-col gap-6" initial="closed" animate="open" exit="closed">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.href}
