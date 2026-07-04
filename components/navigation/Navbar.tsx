@@ -10,6 +10,8 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { NAV_LINKS } from "@/lib/constants";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -86,12 +88,10 @@ export function Navbar() {
         aria-label="Primary"
         initial={false}
         animate={{
-          backgroundColor: scrolled
-            ? "var(--nav-bg-scrolled)"
-            : "rgba(0,0,0,0)",
+          backgroundColor: scrolled ? "var(--nav-bg-scrolled)" : "rgba(0,0,0,0)",
           borderBottomColor: scrolled ? "var(--border)" : "transparent",
         }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.3, ease: EASE }}
         className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md"
       >
         <div
@@ -101,9 +101,10 @@ export function Navbar() {
         <motion.div
           className="max-w-[1280px] mx-auto flex items-center justify-between px-6"
           animate={{ paddingTop: scrolled ? 14 : 24, paddingBottom: scrolled ? 14 : 24 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.3, ease: EASE }}
         >
-          <Link href="/" aria-label="Nexora home" className="flex items-center">
+          {/* Logo — always the fixed left anchor of the header row */}
+          <Link href="/" aria-label="Nexora home" className="flex items-center relative z-10">
             <Image
               src="/logo/nexora-mark.png"
               alt="Nexora"
@@ -140,36 +141,70 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-4">
             <button
-              onClick={() =>
-                setTheme(resolvedTheme === "dark" ? "light" : "dark")
-              }
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               aria-label={
-                resolvedTheme === "dark"
-                  ? "Switch to light theme"
-                  : "Switch to dark theme"
+                resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"
               }
               className="theme-toggle focus-visible-ring"
             >
               {resolvedTheme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-            <button className="btn-primary focus-visible-ring">
-              Book a Demo
-            </button>
+            <button className="btn-primary focus-visible-ring">Book a Demo</button>
           </div>
 
+          {/*
+            Single mobile menu toggle — this is the ONLY hamburger/close button
+            in the entire component. It never unmounts and never duplicates;
+            it just swaps its icon and stays fixed in the same top-right slot
+            at all times, in front of the overlay (z-[70] > overlay's z-[60]).
+            The circular surface is opaque in both themes so it never blends
+            into hero content behind it.
+          */}
           <button
             ref={menuButtonRef}
-            className="md:hidden focus-visible-ring"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
+            className="md:hidden relative z-[70] w-12 h-12 rounded-full flex items-center justify-center
+                       bg-bg-secondary border border-border shadow-md
+                       focus-visible-ring overflow-hidden"
           >
-            <Menu size={24} />
+            <AnimatePresence mode="wait" initial={false}>
+              {menuOpen ? (
+                <motion.span
+                  key="close-icon"
+                  initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                  transition={{ duration: 0.22, ease: EASE }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <X size={20} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu-icon"
+                  initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                  transition={{ duration: 0.22, ease: EASE }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <Menu size={20} />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </motion.div>
       </motion.nav>
 
+      {/*
+        Overlay sits below the toggle button in stacking order (z-[60] vs
+        button's z-[70]), so the button is always visible and never covered
+        or duplicated. Solid, near-opaque background + blur — hero content
+        must not show through.
+      */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -178,33 +213,24 @@ export function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-[60] bg-primary flex flex-col p-6"
+            className="fixed inset-0 z-[60] flex flex-col p-6 pt-28 bg-ink/98 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.25, ease: EASE }}
           >
-            <div className="flex items-center justify-between mb-12">
-              <Image src="/logo/nexora-mark.png" alt="Nexora" width={92} height={120} className="h-8 w-auto" />
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  menuButtonRef.current?.focus();
-                }}
-                aria-label="Close menu"
-                className="focus-visible-ring"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-6">
+            <motion.div
+              className="flex flex-col gap-6"
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.35, delay: 0.05 + i * 0.05, ease: EASE }}
                 >
                   <Link
                     ref={i === 0 ? firstLinkRef : undefined}
@@ -216,11 +242,16 @@ export function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            <button className="btn-primary mt-auto w-full py-4 focus-visible-ring">
+            <motion.button
+              className="btn-primary mt-auto w-full py-4 focus-visible-ring"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.05 + NAV_LINKS.length * 0.05, ease: EASE }}
+            >
               Book a Demo
-            </button>
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
