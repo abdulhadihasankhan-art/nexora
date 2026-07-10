@@ -1,5 +1,4 @@
 // app/page.tsx
-import { Navbar } from "@/components/navigation/Navbar";
 import { Hero } from "@/components/hero/Hero";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
@@ -8,7 +7,6 @@ import { Industries } from "@/components/sections/Industries";
 import { WhyChoose } from "@/components/sections/WhyChoose";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Footer } from "@/components/layout/Footer";
 
 // SoftwareApplication schema — covers the product suite for rich results
 const softwareJsonLd = {
@@ -27,7 +25,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
-      <Navbar />
       <main id="main-content" className="bg-ink text-text-primary">
         <Hero />
         <SocialProof />
@@ -38,7 +35,6 @@ export default function HomePage() {
         <FAQ />
         <FinalCTA />
       </main>
-      <Footer />
     </>
   );
 }
