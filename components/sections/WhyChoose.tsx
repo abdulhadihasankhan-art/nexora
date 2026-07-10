@@ -20,11 +20,11 @@ export function WhyChoose() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-[1280px] mx-auto">
-        <div className="max-w-xl mb-16">
+        <div className="max-w-3xl mb-16">
           <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
             Why Nexora
           </div>
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
+          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight md:whitespace-nowrap">
             &quot;AI company&quot; isn&apos;t a differentiator. This is.
           </h2>
         </div>
