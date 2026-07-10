@@ -3,10 +3,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { INDUSTRIES } from "@/lib/constants";
+import { INDUSTRIES, WHATSAPP_URL } from "@/lib/constants";
 
 export function Industries() {
   const [active, setActive] = useState<string>("EdTech");
+  const current = INDUSTRIES[active];
 
   return (
     <section id="industries" className="py-24 px-6">
@@ -49,15 +50,31 @@ export function Industries() {
             transition={{ duration: 0.25 }}
           >
             <p className="text-text-primary text-lg leading-relaxed mb-6 max-w-2xl">
-              {INDUSTRIES[active].desc}
+              {current.desc}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {INDUSTRIES[active].products.map((p) => (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {current.products.map((p) => (
                 <span key={p} className="text-xs px-3 py-1.5 rounded-pill border border-border text-muted">
                   {p}
                 </span>
               ))}
             </div>
+
+            {current.cta && (
+              <div className="pt-6 border-t border-border">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center focus-visible-ring"
+                >
+                  Book a Free Call
+                </a>
+                <p className="text-muted text-sm mt-3">
+                  Not sure which website is right for your business? Let&apos;s talk.
+                </p>
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
