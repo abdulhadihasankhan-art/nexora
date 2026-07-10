@@ -1,5 +1,6 @@
 // components/sections/FinalCTA.tsx
 import { ArrowRight } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/constants";
 
 export function FinalCTA() {
   return (
@@ -8,9 +9,14 @@ export function FinalCTA() {
         <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
           Ready to build with AI that ships?
         </h2>
-        <button className="inline-flex items-center gap-2 px-8 py-4 rounded-pill bg-white text-ink font-medium transition-transform duration-300 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-pill bg-white text-ink font-medium transition-transform duration-300 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        >
           Book a Call <ArrowRight size={18} aria-hidden="true" />
-        </button>
+        </a>
       </div>
     </section>
   );
