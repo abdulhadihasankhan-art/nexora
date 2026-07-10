@@ -8,11 +8,9 @@ export interface NavLink {
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Products", href: "#products" },
-  { label: "Industries", href: "#industries" },
+  { label: "Products", href: "/#products" },
+  { label: "Industries", href: "/#industries" },
   { label: "Company", href: "/company" },
-  { label: "Docs", href: "#docs" },
-  { label: "Blog", href: "#blog" },
 ];
 
 export interface Product {
