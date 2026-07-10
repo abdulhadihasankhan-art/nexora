@@ -88,7 +88,7 @@ export default function CompanyPage() {
       {/* ABOUT NEXORA */}
       <section className="py-24 px-6 border-t border-border">
         <div className="max-w-[1280px] mx-auto">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-4xl mb-10">
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               About Nexora
             </div>
