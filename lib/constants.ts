@@ -1,5 +1,7 @@
 // lib/constants.ts
 
+export const WHATSAPP_URL = "https://wa.me/919389599735";
+
 export interface NavLink {
   label: string;
   href: string;
@@ -8,7 +10,7 @@ export interface NavLink {
 export const NAV_LINKS: NavLink[] = [
   { label: "Products", href: "#products" },
   { label: "Industries", href: "#industries" },
-  { label: "Company", href: "#company" },
+  { label: "Company", href: "/company" },
   { label: "Docs", href: "#docs" },
   { label: "Blog", href: "#blog" },
 ];
@@ -57,6 +59,7 @@ export const PRODUCTS: Product[] = [
 export interface Industry {
   desc: string;
   products: string[];
+  cta?: boolean;
 }
 
 export const INDUSTRIES: Record<string, Industry> = {
@@ -72,7 +75,13 @@ export const INDUSTRIES: Record<string, Industry> = {
     desc: "WhatsApp-native automation for local businesses — chatbots, CRM, and voice AI with one-time pricing.",
     products: ["Nexora Automation Suite"],
   },
+  "Website Development": {
+    desc: "Modern websites built for every business — from startups and local businesses to schools, healthcare, restaurants, e-commerce, real estate, portfolios, and enterprise companies. Fast, responsive, SEO-friendly, and designed to convert visitors into customers.",
+    products: ["Custom Websites"],
+    cta: true,
+  },
 };
+
 
 export interface FaqItem {
   q: string;
