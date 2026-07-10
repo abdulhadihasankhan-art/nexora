@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, WHATSAPP_URL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -149,7 +149,14 @@ export function Navbar() {
             >
               {resolvedTheme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-            <button className="btn-primary focus-visible-ring">Book a Demo</button>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary focus-visible-ring"
+            >
+              Book a Demo
+            </a>
           </div>
 
           {/* Mobile: empty spacer so the logo stays left-aligned; the real
@@ -245,14 +252,18 @@ export function Navbar() {
               ))}
             </motion.div>
 
-            <motion.button
-              className="btn-primary mt-auto w-full py-4 focus-visible-ring"
+            <motion.a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="btn-primary mt-auto w-full py-4 text-center focus-visible-ring"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: 0.05 + NAV_LINKS.length * 0.05, ease: EASE }}
             >
               Book a Demo
-            </motion.button>
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
