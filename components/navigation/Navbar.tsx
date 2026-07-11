@@ -6,8 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/hooks/useTheme";
+import { Menu, X } from "lucide-react";
 import { NAV_LINKS, WHATSAPP_URL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -16,7 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, resolvedTheme, setTheme } = useTheme(); // "light" | "dark" | "system"
+  // Theme toggle removed — site is permanently dark with white text.
   const pathname = usePathname();
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -99,7 +98,7 @@ export function Navbar() {
           style={{ width: `${progress * 100}%`, transition: "width 0.1s linear" }}
         />
         <motion.div
-          className="max-w-[1280px] mx-auto flex items-center justify-between px-6"
+          className="relative max-w-[1280px] mx-auto flex items-center justify-between px-6"
           animate={{ paddingTop: scrolled ? 14 : 24, paddingBottom: scrolled ? 14 : 24 }}
           transition={{ duration: 0.3, ease: EASE }}
         >
@@ -115,7 +114,9 @@ export function Navbar() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          {/* Absolutely centered so the three links sit in the true middle
+              of the header regardless of logo/button width on either side. */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -140,15 +141,6 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              aria-label={
-                resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-              }
-              className="theme-toggle focus-visible-ring"
-            >
-              {resolvedTheme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
             <a
               href={WHATSAPP_URL}
               target="_blank"

@@ -88,7 +88,7 @@ export default function CompanyPage() {
       {/* ABOUT NEXORA */}
       <section className="py-24 px-6 border-t border-border">
         <div className="max-w-[1280px] mx-auto">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-4xl mb-10">
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               About Nexora
             </div>
@@ -115,7 +115,7 @@ export default function CompanyPage() {
       {/* WHAT WE BUILD */}
       <section className="py-24 px-6 border-t border-border">
         <div className="max-w-[1280px] mx-auto">
-          <div className="max-w-xl mb-16">
+          <div className="max-w-xl mx-auto mb-16 text-center">
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               What We Build
             </div>
@@ -126,7 +126,7 @@ export default function CompanyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {WHAT_WE_BUILD.map((item) => (
-              <div key={item.name} className="rounded-lg border border-border bg-bg-secondary p-6">
+              <div key={item.name} className="rounded-lg border border-border bg-bg-secondary p-6 text-center flex flex-col items-center">
                 <item.icon size={22} className="text-accent mb-4" aria-hidden="true" />
                 <h3 className="font-medium text-lg mb-2">{item.name}</h3>
                 <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
@@ -139,7 +139,7 @@ export default function CompanyPage() {
       {/* WHY BUSINESSES CHOOSE NEXORA */}
       <section className="py-24 px-6 border-t border-border">
         <div className="max-w-[1280px] mx-auto">
-          <div className="max-w-xl mb-16">
+          <div className="max-w-xl mx-auto mb-16 text-center">
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               Why Nexora
             </div>
@@ -150,7 +150,7 @@ export default function CompanyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px border border-border rounded-lg overflow-hidden">
             {WHY_CHOOSE.map((item) => (
-              <div key={item.title} className="bg-ink p-6 hover:bg-bg-secondary transition-colors duration-300">
+              <div key={item.title} className="bg-ink p-6 hover:bg-bg-secondary transition-colors duration-300 text-center flex flex-col items-center">
                 <item.icon size={22} className="text-accent mb-4" aria-hidden="true" />
                 <h3 className="font-medium mb-2">{item.title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
