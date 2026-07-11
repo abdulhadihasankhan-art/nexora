@@ -45,7 +45,7 @@ export function FloatingAIWidget() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
-  const introTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const introTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   // Tracks whether the message currently being answered was sent via mic —
   // if so, the reply always plays as voice regardless of the manual toggle.
