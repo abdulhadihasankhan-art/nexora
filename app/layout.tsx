@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/hooks/useTheme";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingAIWidget } from "@/components/ai-widget/FloatingAIWidget";
 import "./globals.css";
 
 const SITE_URL = "https://nexoratech.example.com"; // replace with real domain
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Footer />
+          <FloatingAIWidget />
         </ThemeProvider>
       </body>
     </html>

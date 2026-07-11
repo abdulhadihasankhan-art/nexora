@@ -3,24 +3,15 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Mic, Flame, TrendingUp, Sparkles } from "lucide-react";
-import dynamic from "next/dynamic";
-
-// Demo widget is heavy and only needed on click — load it lazily.
-const LiveDemoPanel = dynamic(() => import("./LiveDemoPanel"), {
-  ssr: false,
-  loading: () => <div className="h-24 animate-pulse rounded-lg bg-bg-secondary" />,
-});
+import { ArrowRight, Play, MessageCircle, TrendingUp, Zap, Sparkles } from "lucide-react";
 
 const RESPONSE_TEXT =
-  "Bien sûr ! Pour combien de personnes souhaitez-vous réserver la table ?";
+  "Got it — I can qualify leads, answer FAQs, and hand off booked calls automatically. Want to see how?";
 
-const SUGGESTION_CHIPS = ["Ask about pricing", "Practice pronunciation", "Change topic"];
+const SUGGESTION_CHIPS = ["WhatsApp automation", "CRM integration", "Talk to a human"];
 
 export function Hero() {
   const [typed, setTyped] = useState("");
-  const [listening, setListening] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -79,11 +70,10 @@ export function Hero() {
               Explore Products <ArrowRight size={16} aria-hidden="true" />
             </button>
             <button
-              onClick={() => setDemoOpen((v) => !v)}
+              onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
               className="flex items-center gap-2 px-6 py-3.5 rounded-pill font-medium border border-border hover:border-accent transition-colors duration-150 focus-visible-ring"
-              aria-expanded={demoOpen}
             >
-              <Play size={16} aria-hidden="true" /> Try it live
+              <Play size={16} aria-hidden="true" /> Talk to Nexora AI
             </button>
           </div>
         </motion.div>
@@ -101,8 +91,8 @@ export function Hero() {
           >
             <TrendingUp size={16} className="text-accent" aria-hidden="true" />
             <div>
-              <div className="text-sm font-semibold leading-none">87%</div>
-              <div className="text-[10px] text-muted leading-none mt-1">Fluency score</div>
+              <div className="text-sm font-semibold leading-none">24/7</div>
+              <div className="text-[10px] text-muted leading-none mt-1">Always responding</div>
             </div>
           </motion.div>
 
@@ -111,10 +101,10 @@ export function Hero() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
           >
-            <Flame size={16} className="text-accent" aria-hidden="true" />
+            <Zap size={16} className="text-accent" aria-hidden="true" />
             <div>
-              <div className="text-sm font-semibold leading-none">12 days</div>
-              <div className="text-[10px] text-muted leading-none mt-1">Practice streak</div>
+              <div className="text-sm font-semibold leading-none">Instant</div>
+              <div className="text-[10px] text-muted leading-none mt-1">Lead qualification</div>
             </div>
           </motion.div>
 
@@ -122,19 +112,19 @@ export function Hero() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center bg-accent text-white text-sm font-semibold">
-                  F
+                  <MessageCircle size={14} />
                 </div>
                 <div>
-                  <div className="text-sm font-medium">Fluide AI</div>
-                  <div className="text-xs text-muted">Conversation practice</div>
+                  <div className="text-sm font-medium">Nexora AI</div>
+                  <div className="text-xs text-muted">Automation assistant</div>
                 </div>
               </div>
-              <div className="text-xs text-muted">TCF Mode</div>
+              <div className="text-xs text-muted">Live</div>
             </div>
 
             <div className="rounded-md border border-border p-4 space-y-3 min-h-[180px]" aria-live="polite">
               <div className="rounded-md rounded-tr-none p-3 text-sm max-w-[85%] ml-auto bg-accent text-white">
-                Je voudrais réserver une table pour ce soir.
+                Can this handle customer questions on WhatsApp?
               </div>
               <div className="border border-border rounded-md rounded-tl-none p-3 text-sm max-w-[85%] min-h-[44px]">
                 {typed}
@@ -152,44 +142,12 @@ export function Hero() {
                 </button>
               ))}
             </div>
-
-            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border">
-              <button
-                onClick={() => setListening((v) => !v)}
-                aria-pressed={listening}
-                aria-label="Toggle voice input"
-                className="w-11 h-11 rounded-full flex items-center justify-center bg-accent text-white shrink-0 transition-transform duration-150 focus-visible-ring"
-                style={{
-                  transform: listening ? "scale(1.05)" : "scale(1)",
-                  boxShadow: listening ? "0 0 0 6px rgba(232,84,42,0.15)" : "none",
-                }}
-              >
-                <Mic size={18} aria-hidden="true" />
-              </button>
-              <div className="flex items-center gap-[3px] h-8 flex-1" aria-hidden="true">
-                {Array.from({ length: 24 }).map((_, i) => (
-                  <motion.span
-                    key={i}
-                    className="w-[3px] rounded-full bg-border"
-                    animate={
-                      listening
-                        ? { scaleY: [0.6, 1, 0.6], backgroundColor: "#E8542A" }
-                        : { scaleY: 0.3, backgroundColor: "#232833" }
-                    }
-                    transition={{ duration: 0.8, repeat: listening ? Infinity : 0, delay: i * 0.04 }}
-                    style={{ height: "20px" }}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
           <p className="text-xs text-muted mt-3 text-center">
-            Live product preview — Fluide AI conversation engine
+            This is the same AI that powers the chat bubble — tap it to try the real thing.
           </p>
         </motion.div>
       </div>
-
-      {demoOpen && <LiveDemoPanel />}
     </section>
   );
 }
