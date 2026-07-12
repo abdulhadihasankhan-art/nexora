@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { INDUSTRIES, WHATSAPP_URL } from "@/lib/constants";
+import { INDUSTRIES, CALENDAR_URL } from "@/lib/constants";
 
 export function Industries() {
   const [active, setActive] = useState<string>("EdTech");
@@ -63,7 +63,7 @@ export function Industries() {
             {current.cta && (
               <div className="pt-6 border-t border-border">
                 <a
-                  href={WHATSAPP_URL}
+                  href={CALENDAR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary inline-flex items-center focus-visible-ring"

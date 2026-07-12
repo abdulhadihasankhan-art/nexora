@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play, MessageCircle, TrendingUp, Zap, Sparkles } from "lucide-react";
 
 const RESPONSE_TEXT =
-  "Got it — I can qualify leads, answer FAQs, and hand off booked calls automatically. Want to see how?";
+  "Yes — we connect directly to WhatsApp Business and answer customer questions instantly, 24/7. Want to see how it works?";
 
-const SUGGESTION_CHIPS = ["WhatsApp automation", "CRM integration", "Talk to a human"];
+const SUGGESTION_CHIPS = ["WhatsApp automation", "CRM integration", "Email automation"];
 
 export function Hero() {
   const [typed, setTyped] = useState("");
@@ -58,7 +58,7 @@ export function Hero() {
             AI Products, Shipped
           </div>
           <h1 className="text-4xl md:text-3xl font-display font-semibold leading-[1.1] tracking-tight mb-6 text-text-primary">
-            We build AI that people actually use.
+            AI and automation, built to actually ship.
           </h1>
           <p className="text-lg md:text-base text-muted mb-10 max-w-xl leading-relaxed">
             Nexora designs and ships AI-powered products across language
@@ -66,14 +66,17 @@ export function Hero() {
             live software.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <button className="btn-primary flex items-center gap-2 focus-visible-ring">
+            <a
+              href="#products"
+              className="btn-primary flex items-center gap-2 focus-visible-ring"
+            >
               Explore Products <ArrowRight size={16} aria-hidden="true" />
-            </button>
+            </a>
             <button
               onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
               className="flex items-center gap-2 px-6 py-3.5 rounded-pill font-medium border border-border hover:border-accent transition-colors duration-150 focus-visible-ring"
             >
-              <Play size={16} aria-hidden="true" /> Talk to Nexora AI
+              <Play size={16} aria-hidden="true" /> Talk to Nexora Team
             </button>
           </div>
         </motion.div>
@@ -108,7 +111,11 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <div className="rounded-lg border border-border bg-bg-secondary p-5 shadow-lg relative">
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
+            aria-label="Open the real Nexora AI assistant"
+            className="w-full text-left rounded-lg border border-border bg-bg-secondary p-5 shadow-lg relative cursor-pointer transition-colors duration-200 hover:border-accent focus-visible-ring"
+          >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center bg-accent text-white text-sm font-semibold">
@@ -134,18 +141,25 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-2 mt-3">
               {SUGGESTION_CHIPS.map((chip) => (
-                <button
+                <span
                   key={chip}
-                  className="text-xs px-3 py-1.5 rounded-pill border border-border text-muted hover:text-text-primary hover:border-accent transition-colors duration-150 focus-visible-ring"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.dispatchEvent(new CustomEvent("open-nexora-ai", { detail: { message: chip } }));
+                  }}
+                  className="text-xs px-3 py-1.5 rounded-pill border border-border text-muted hover:text-text-primary hover:border-accent transition-colors duration-150"
                 >
                   {chip}
-                </button>
+                </span>
               ))}
             </div>
-          </div>
-          <p className="text-xs text-muted mt-3 text-center">
+          </button>
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
+            className="text-xs text-muted mt-3 text-center w-full underline decoration-dotted underline-offset-4 hover:text-text-primary transition-colors focus-visible-ring"
+          >
             This is the same AI that powers the chat bubble — tap it to try the real thing.
-          </p>
+          </button>
         </motion.div>
       </div>
     </section>

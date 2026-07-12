@@ -2,12 +2,15 @@
 
 export const WHATSAPP_URL = "https://wa.me/919389599735";
 
+export const CALENDAR_URL = "https://calendar.app.google/zAUPQk9YVVZ4Zgiz6";
+
 export interface NavLink {
   label: string;
   href: string;
 }
 
 export const NAV_LINKS: NavLink[] = [
+  { label: "Home", href: "/" },
   { label: "Products", href: "/#products" },
   { label: "Industries", href: "/#industries" },
   { label: "Company", href: "/company" },

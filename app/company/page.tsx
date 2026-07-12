@@ -1,7 +1,7 @@
 // app/company/page.tsx
 import type { Metadata } from "next";
 import { ArrowRight, Bot, Globe, Workflow, GraduationCap, Code2, Palette, Sparkles, Zap, LifeBuoy } from "lucide-react";
-import { WHATSAPP_URL } from "@/lib/constants";
+import { CALENDAR_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Company — Nexora Technologies",
@@ -75,7 +75,7 @@ export default function CompanyPage() {
             Nexora develops AI software and modern digital solutions for businesses, education, healthcare, and organizations worldwide.
           </p>
           <a
-            href={WHATSAPP_URL}
+            href={CALENDAR_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 focus-visible-ring"
@@ -167,7 +167,7 @@ export default function CompanyPage() {
             Let&apos;s build something exceptional together.
           </h2>
           <a
-            href={WHATSAPP_URL}
+            href={CALENDAR_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-pill bg-white text-ink font-medium transition-transform duration-300 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
