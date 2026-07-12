@@ -7,7 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS, WHATSAPP_URL } from "@/lib/constants";
+import { NAV_LINKS, CALENDAR_URL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -142,7 +142,7 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-4">
             <a
-              href={WHATSAPP_URL}
+              href={CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary focus-visible-ring"
@@ -245,7 +245,7 @@ export function Navbar() {
             </motion.div>
 
             <motion.a
-              href={WHATSAPP_URL}
+              href={CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
