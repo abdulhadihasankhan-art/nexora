@@ -45,6 +45,8 @@ export function FloatingAIWidget() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
   const introTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   // Tracks whether the message currently being answered was sent via mic —
@@ -54,11 +56,25 @@ export function FloatingAIWidget() {
   // Streams audio straight from /api/tts (ElevenLabs) — playback starts as
   // soon as the browser has enough of the first chunk buffered, not after
   // the whole clip is generated. Falls back to browser TTS on any failure.
+  // iOS Safari only allows audio.play() to work reliably when it's first
+  // called synchronously inside a real tap — after that, the SAME element
+  // can keep playing even from later async code (like our AI reply arriving
+  // after a network round-trip). So we "unlock" one persistent element the
+  // moment the visitor taps mic or send, before any async work starts.
+  const unlockAudio = useCallback(() => {
+    if (!audioRef.current) audioRef.current = new Audio();
+    const silence =
+      "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+    audioRef.current.src = silence;
+    audioRef.current.play().then(() => audioRef.current?.pause()).catch(() => {});
+  }, []);
+
   const playVoice = useCallback((text: string, onEnd: () => void) => {
     try {
-      audioRef.current?.pause();
-      const audio = new Audio(`/api/tts?text=${encodeURIComponent(text)}`);
-      audioRef.current = audio;
+      if (!audioRef.current) audioRef.current = new Audio();
+      const audio = audioRef.current;
+      audio.pause();
+      audio.src = `/api/tts?text=${encodeURIComponent(text)}`;
       audio.onended = onEnd;
       audio.onerror = () => speakBrowserFallback(text, onEnd);
       audio.play().catch(() => speakBrowserFallback(text, onEnd));
@@ -160,37 +176,88 @@ export function FloatingAIWidget() {
 
   const toggleMic = () => {
     stopIntroForever();
+    unlockAudio(); // must run synchronously, inside this tap — before anything async
     const SpeechRecognition =
       typeof window !== "undefined" &&
       ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
-    if (!SpeechRecognition) {
-      alert("Voice input isn't supported in this browser — try Chrome or Edge.");
+
+    if (SpeechRecognition) {
+      // Chrome / Edge path — native, instant, free.
+      if (listening) {
+        recognitionRef.current?.stop();
+        setListening(false);
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = false;
+      recognition.onresult = (e: any) => {
+        const transcript = e.results[0][0].transcript;
+        lastInputWasVoiceRef.current = true;
+        sendMessage(transcript);
+      };
+      recognition.onend = () => setListening(false);
+      recognitionRef.current = recognition;
+      recognition.start();
+      setListening(true);
       return;
     }
+
+    // Safari / iOS path — no native SpeechRecognition support at all here,
+    // so we record audio directly and transcribe it via Groq Whisper.
+    toggleRecordingFallback();
+  };
+
+  const toggleRecordingFallback = async () => {
     if (listening) {
-      recognitionRef.current?.stop();
+      mediaRecorderRef.current?.stop();
       setListening(false);
       return;
     }
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-    recognition.onresult = (e: any) => {
-      const transcript = e.results[0][0].transcript;
-      lastInputWasVoiceRef.current = true;
-      sendMessage(transcript);
-    };
-    recognition.onend = () => setListening(false);
-    recognitionRef.current = recognition;
-    recognition.start();
-    setListening(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType =
+        ["audio/mp4", "audio/webm", "audio/ogg"].find((t) => MediaRecorder.isTypeSupported(t)) || "";
+      const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      audioChunksRef.current = [];
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunksRef.current.push(e.data);
+      };
+      recorder.onstop = async () => {
+        stream.getTracks().forEach((t) => t.stop());
+        const blob = new Blob(audioChunksRef.current, { type: mimeType || "audio/webm" });
+        setThinking(true);
+        try {
+          const form = new FormData();
+          form.append("audio", blob, "voice.webm");
+          const res = await fetch("/api/stt", { method: "POST", body: form });
+          const data = await res.json();
+          if (data.text?.trim()) {
+            lastInputWasVoiceRef.current = true;
+            sendMessage(data.text.trim());
+          } else {
+            setThinking(false);
+          }
+        } catch {
+          setThinking(false);
+        }
+      };
+      mediaRecorderRef.current = recorder;
+      recorder.start();
+      setListening(true);
+    } catch {
+      alert("We need microphone access to hear you — check your browser permissions.");
+    }
   };
 
   return (
     <>
       {/* Floating trigger bubble */}
       <motion.button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          unlockAudio();
+          setOpen((v) => !v);
+        }}
         aria-label={open ? "Close Nexora AI" : "Open Nexora AI"}
         className="fixed bottom-6 right-6 z-[90] w-16 h-16 rounded-full flex items-center justify-center
                    bg-accent text-white shadow-lg focus-visible-ring"
@@ -357,12 +424,20 @@ export function FloatingAIWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={stopIntroForever}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    unlockAudio();
+                    sendMessage(input);
+                  }
+                }}
                 placeholder="Ask Nexora AI anything…"
                 className="flex-1 min-w-0 bg-transparent text-sm outline-none placeholder:text-muted"
               />
               <button
-                onClick={() => sendMessage(input)}
+                onClick={() => {
+                  unlockAudio();
+                  sendMessage(input);
+                }}
                 aria-label="Send message"
                 disabled={!input.trim()}
                 className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shrink-0 disabled:opacity-40 transition-opacity focus-visible-ring"
