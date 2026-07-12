@@ -67,8 +67,14 @@ export function FloatingAIWidget() {
     }
   }, []);
 
+  const [pendingMessage, setPendingMessage] = useState<string | null>(null);
+
   useEffect(() => {
-    const handler = () => setOpen(true);
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { message?: string } | undefined;
+      setOpen(true);
+      if (detail?.message) setPendingMessage(detail.message);
+    };
     window.addEventListener("open-nexora-ai", handler);
     return () => window.removeEventListener("open-nexora-ai", handler);
   }, []);
@@ -141,6 +147,16 @@ export function FloatingAIWidget() {
     },
     [messages, stopIntroForever, voiceOn, playVoice]
   );
+
+  // Fires a chip's topic as the first real message once the widget is open —
+  // this is what makes tapping "WhatsApp automation" on the Hero card
+  // actually ask that question, not just open an empty chat.
+  useEffect(() => {
+    if (open && pendingMessage) {
+      sendMessage(pendingMessage);
+      setPendingMessage(null);
+    }
+  }, [open, pendingMessage, sendMessage]);
 
   const toggleMic = () => {
     stopIntroForever();
