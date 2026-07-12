@@ -66,14 +66,17 @@ export function Hero() {
             live software.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <button className="btn-primary flex items-center gap-2 focus-visible-ring">
+            <a
+              href="#products"
+              className="btn-primary flex items-center gap-2 focus-visible-ring"
+            >
               Explore Products <ArrowRight size={16} aria-hidden="true" />
-            </button>
+            </a>
             <button
               onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
               className="flex items-center gap-2 px-6 py-3.5 rounded-pill font-medium border border-border hover:border-accent transition-colors duration-150 focus-visible-ring"
             >
-              <Play size={16} aria-hidden="true" /> Talk to Nexora AI
+              <Play size={16} aria-hidden="true" /> Talk to Nexora Team
             </button>
           </div>
         </motion.div>
