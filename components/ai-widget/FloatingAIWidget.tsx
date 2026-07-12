@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, X, Mic, Send, Volume2, VolumeX, RotateCcw, Square,
 } from "lucide-react";
-import { WHATSAPP_URL } from "@/lib/constants";
+import { CALENDAR_URL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -16,7 +16,7 @@ interface Message {
 }
 
 const INTRO_TEXT =
-  "Hi 👋 I'm Nexora AI. I help businesses automate sales, customer support, and operations using AI. Ask me anything.";
+  "Hi 👋 We're the team at Nexora. We help businesses automate sales, customer support, and operations using AI. Ask us anything.";
 
 const QUICK_REPLIES = ["AI Automation", "Website Development", "Book a free call"];
 
@@ -309,15 +309,15 @@ export function FloatingAIWidget() {
                 </div>
               )}
 
-              {/* WhatsApp handoff once the AI has clearly moved into booking mode */}
-              {lastAiText.toLowerCase().includes("whatsapp") && (
+              {/* Calendar handoff once the AI has clearly moved into booking mode */}
+              {lastAiText.toLowerCase().includes("calendar") && (
                 <a
-                  href={WHATSAPP_URL}
+                  href={CALENDAR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary inline-block text-center text-sm focus-visible-ring"
                 >
-                  Confirm on WhatsApp
+                  Pick a time on our calendar
                 </a>
               )}
             </div>
