@@ -58,7 +58,7 @@ export function Hero() {
             AI Products, Shipped
           </div>
           <h1 className="text-4xl md:text-3xl font-display font-semibold leading-[1.1] tracking-tight mb-6 text-text-primary">
-            We build AI that people actually use.
+            AI and automation, built to actually ship.
           </h1>
           <p className="text-lg md:text-base text-muted mb-10 max-w-xl leading-relaxed">
             Nexora designs and ships AI-powered products across language
