@@ -13,22 +13,22 @@ const WHAT_WE_BUILD = [
   {
     icon: Bot,
     name: "AI Applications",
-    desc: "Conversational AI, automation engines, and intelligent product features built on production-grade infrastructure.",
+    desc: "Conversational AI, automation engines, and intelligent product features built on production grade infrastructure.",
   },
   {
     icon: Globe,
     name: "Website Development",
-    desc: "Fast, responsive, SEO-friendly websites for startups, local businesses, schools, healthcare, and enterprise.",
+    desc: "Fast, responsive, SEO friendly websites for startups, local businesses, schools, healthcare, and enterprise.",
   },
   {
     icon: Workflow,
     name: "Business Automation",
-    desc: "WhatsApp-native chatbots, CRM integrations, and workflow automation that reduce manual work.",
+    desc: "WhatsApp native chatbots, CRM integrations, and workflow automation that reduce manual work.",
   },
   {
     icon: GraduationCap,
     name: "Educational Platforms",
-    desc: "Role-based learning platforms with live classes, adaptive content, and student progress tracking.",
+    desc: "Role based learning platforms with live classes, adaptive content, and student progress tracking.",
   },
   {
     icon: Code2,
@@ -38,10 +38,10 @@ const WHAT_WE_BUILD = [
 ];
 
 const WHY_CHOOSE = [
-  { icon: Palette, title: "Modern Design", desc: "Premium, minimal interfaces built with the same care as top-tier product companies." },
+  { icon: Palette, title: "Modern Design", desc: "Premium, minimal interfaces built with the same care as top tier product companies." },
   { icon: Sparkles, title: "AI First", desc: "AI is built into the product from day one, not bolted on as an afterthought." },
-  { icon: Zap, title: "Fast Development", desc: "Founder-led execution means fewer handoffs and faster shipping." },
-  { icon: LifeBuoy, title: "Long-term Support", desc: "Direct access to the team that built your product, long after launch." },
+  { icon: Zap, title: "Fast Development", desc: "Founder led execution means fewer handoffs and faster shipping." },
+  { icon: LifeBuoy, title: "Long term Support", desc: "Direct access to the team that built your product, long after launch." },
 ];
 
 const FOCUS_AREAS = [
