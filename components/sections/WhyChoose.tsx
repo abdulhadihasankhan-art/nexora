@@ -14,7 +14,7 @@ const REASONS: Reason[] = [
   { icon: Zap, title: "Ships fast", proof: "Fluide AI went from concept to a live app in under two weeks." },
   {
     icon: User,
-    title: "Founder-led, deliberately small",
+    title: "Founder led, deliberately small",
     proof:
       "We're a senior team of five. That's a choice — fewer handoffs, faster shipping, direct access to the people building your product. We take on a limited number of projects at a time so each one ships properly.",
   },
