@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   // optimize_streaming_latency=4 + eleven_turbo_v2_5 = lowest latency ElevenLabs
   // combination available today. Audio starts streaming to the client the
   // moment the first chunk is generated, rather than waiting for the full
-  // clip — this is what makes playback start feel instant.
+  // clip this is what makes playback start feel instant.
   const upstream = await fetch(
     `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/stream?optimize_streaming_latency=4`,
     {
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
     return new Response(errText, { status: upstream.status });
   }
 
-  // Pipe the upstream stream straight through — no buffering server-side.
+  // Pipe the upstream stream straight through no buffering server-side.
   return new Response(upstream.body, {
     headers: {
       "Content-Type": "audio/mpeg",
