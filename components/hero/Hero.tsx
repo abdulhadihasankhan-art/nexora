@@ -83,6 +83,9 @@ export function Hero() {
               See what we&apos;ve shipped
             </a>
           </div>
+          <p className="text-xs text-muted mt-4">
+            Milestone-based payments — you never pay for work you haven&apos;t seen.
+          </p>
         </motion.div>
 
         <motion.div
