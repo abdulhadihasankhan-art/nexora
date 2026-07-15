@@ -6,7 +6,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/nexora__technologies?utm_source
 
 export function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-border">
+    <footer className="py-8 px-6 pb-24 md:pb-8 border-t border-border">
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center">
         <p className="text-muted text-xs">© 2026 Nexora Technologies. All rights reserved.</p>
         <div className="flex gap-4">

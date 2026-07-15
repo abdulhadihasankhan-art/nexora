@@ -1,10 +1,11 @@
 // app/page.tsx
 import { Hero } from "@/components/hero/Hero";
 import { SocialProof } from "@/components/sections/SocialProof";
-import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
 import { Services } from "@/components/sections/Services";
-import { Industries } from "@/components/sections/Industries";
+import { HowWeWork } from "@/components/sections/HowWeWork";
+import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
 import { WhyChoose } from "@/components/sections/WhyChoose";
+import { Industries } from "@/components/sections/Industries";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
@@ -25,13 +26,14 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
-      <main id="main-content" className="bg-ink text-text-primary">
+      <main id="main-content" className="bg-ink text-text-primary pb-24 md:pb-0">
         <Hero />
         <SocialProof />
-        <ProductsShowcase />
         <Services />
-        <Industries />
+        <HowWeWork />
+        <ProductsShowcase />
         <WhyChoose />
+        <Industries />
         <FAQ />
         <FinalCTA />
       </main>

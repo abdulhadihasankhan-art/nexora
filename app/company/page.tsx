@@ -1,7 +1,7 @@
 // app/company/page.tsx
 import type { Metadata } from "next";
 import { ArrowRight, Bot, Globe, Workflow, GraduationCap, Code2, Palette, Sparkles, Zap, LifeBuoy } from "lucide-react";
-import { CALENDAR_URL } from "@/lib/constants";
+import { CALENDAR_URL, CTA_LABEL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Company — Nexora Technologies",
@@ -54,7 +54,7 @@ const FOCUS_AREAS = [
 
 export default function CompanyPage() {
   return (
-    <main className="bg-ink text-text-primary">
+    <main className="bg-ink text-text-primary pb-24 md:pb-0">
       {/* HERO */}
       <section className="relative max-w-[1280px] mx-auto px-6 pt-40 pb-24 md:pt-48 md:pb-32 text-center overflow-hidden">
         <div
@@ -80,7 +80,7 @@ export default function CompanyPage() {
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 focus-visible-ring"
           >
-            Book a Call <ArrowRight size={16} aria-hidden="true" />
+            {CTA_LABEL} <ArrowRight size={16} aria-hidden="true" />
           </a>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               About Nexora
             </div>
-            <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight mb-6">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight mb-6">
               We build production-ready software, not prototypes.
             </h2>
             <p className="text-muted text-lg leading-relaxed">
@@ -119,7 +119,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               What We Build
             </div>
-            <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
               Five capabilities, one team.
             </h2>
           </div>
@@ -143,7 +143,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
               Why Nexora
             </div>
-            <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
               Why businesses choose Nexora.
             </h2>
           </div>
@@ -163,7 +163,7 @@ export default function CompanyPage() {
       {/* CTA */}
       <section className="py-32 px-6 bg-accent">
         <div className="max-w-[800px] mx-auto text-center">
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
             Let&apos;s build something exceptional together.
           </h2>
           <a
@@ -172,7 +172,7 @@ export default function CompanyPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-pill bg-white text-ink font-medium transition-transform duration-300 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            Book a Call <ArrowRight size={18} aria-hidden="true" />
+            {CTA_LABEL} <ArrowRight size={18} aria-hidden="true" />
           </a>
         </div>
       </section>
