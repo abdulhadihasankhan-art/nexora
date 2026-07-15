@@ -31,7 +31,7 @@ export function FAQ() {
           <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
             FAQ
           </div>
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
             Common questions.
           </h2>
         </div>
