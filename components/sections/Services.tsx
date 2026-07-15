@@ -7,8 +7,8 @@ import { Bot, Workflow, Lightbulb, Layers } from "lucide-react";
 const SERVICES = [
   { icon: Bot, name: "AI Applications & Chatbots", desc: "Custom AI assistants that answer customers, qualify leads, and work 24/7." },
   { icon: Workflow, name: "Business & Workflow Automation", desc: "WhatsApp, CRM, and internal automation that cuts manual, repetitive work." },
-  { icon: Lightbulb, name: "AI Integration & Consulting", desc: "Strategy and hands-on implementation for teams adopting AI." },
-  { icon: Layers, name: "Full product build", desc: "Need the website, app, or custom software around your AI? We build it in-house — one team, no handoffs." },
+  { icon: Lightbulb, name: "AI Integration & Consulting", desc: "Strategy and hands on implementation for teams adopting AI." },
+  { icon: Layers, name: "Full product build", desc: "Need the website, app, or custom software around your AI? We build it in house — one team, no handoffs." },
 ];
 
 export function Services() {
