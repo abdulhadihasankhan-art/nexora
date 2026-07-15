@@ -18,7 +18,7 @@ export function FinalCTA() {
           {CTA_LABEL} <ArrowRight size={18} aria-hidden="true" />
         </a>
         <p className="text-xs text-white/70 mt-4">
-          Milestone-based payments — you never pay for work you haven&apos;t seen.
+          Milestone-based payments you never pay for work you haven&apos;t seen.
         </p>
       </div>
     </section>
