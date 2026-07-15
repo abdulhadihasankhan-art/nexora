@@ -61,7 +61,7 @@ export function Hero() {
             <Sparkles size={12} aria-hidden="true" />
             AI Automation, Shipped
           </div>
-          <h1 className="text-[28px] md:text-3xl font-display font-semibold leading-[1.15] tracking-tight mb-5 text-text-primary">
+          <h1 className="text-[28px] md:text-3xl font-display font-semibold leading-[1.15] uppercase tracking-tight mb-5 text-text-primary">
             AI &amp; automation that runs your business — built and shipped by founders.
           </h1>
           <p className="text-base md:text-base text-muted mb-8 max-w-xl leading-relaxed">
