@@ -10,15 +10,14 @@ export function ProductsShowcase() {
     <section id="products" className="py-24 px-6">
       <div className="max-w-[1280px] mx-auto">
         <div className="max-w-xl mb-16">
-          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
+          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             Products
           </div>
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight mb-4">
-            Live software, not concepts.
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight mb-4">
+            Real AI products we&apos;ve shipped.
           </h2>
           <p className="text-muted text-lg">
-            Four products across language learning, healthcare, and business
-            automation — each shipped or actively in development.
+            Live software serving real users — proof we build AI that works, not demos.
           </p>
         </div>
 
@@ -43,7 +42,7 @@ export function ProductsShowcase() {
                   </div>
                   <div>
                     <h3 className="font-medium text-lg leading-tight">{p.name}</h3>
-                    <span className={`text-xs ${p.inDevelopment ? "text-muted" : "text-accent"}`}>
+                    <span className={`text-xs ${p.inDevelopment ? "text-muted" : "text-text-primary"}`}>
                       {p.tag}
                     </span>
                   </div>
