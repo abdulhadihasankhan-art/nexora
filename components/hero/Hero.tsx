@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, MessageCircle, TrendingUp, Zap, Sparkles } from "lucide-react";
+import { ArrowRight, MessageCircle, TrendingUp, Zap, Sparkles } from "lucide-react";
+import { CTA_LABEL, CALENDAR_URL } from "@/lib/constants";
 
 const RESPONSE_TEXT =
   "Yes — we connect directly to WhatsApp Business and answer customer questions instantly, 24/7. Want to see how it works?";
@@ -12,6 +13,7 @@ const SUGGESTION_CHIPS = ["WhatsApp automation", "CRM integration", "Email autom
 
 export function Hero() {
   const [typed, setTyped] = useState("");
+  const [isTypingActive, setIsTypingActive] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -19,9 +21,11 @@ export function Hero() {
     const type = () => {
       if (i <= RESPONSE_TEXT.length) {
         setTyped(RESPONSE_TEXT.slice(0, i));
+        setIsTypingActive(i > 0 && i < RESPONSE_TEXT.length);
         i++;
         timeout = setTimeout(type, 28);
       } else {
+        setIsTypingActive(false);
         timeout = setTimeout(() => {
           i = 0;
           setTyped("");
@@ -53,31 +57,31 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="inline-flex items-center gap-1.5 text-xs font-medium tracking-widest uppercase mb-6 px-3 py-1 rounded-pill border border-accent text-accent">
+          <div className="inline-flex items-center gap-1.5 text-xs font-medium tracking-widest uppercase mb-6 px-3 py-1 rounded-pill border border-border text-muted">
             <Sparkles size={12} aria-hidden="true" />
-            AI Products, Shipped
+            AI Automation, Shipped
           </div>
-          <h1 className="text-4xl md:text-3xl font-display font-semibold leading-[1.1] tracking-tight mb-6 text-text-primary">
-            AI and automation, built to actually ship.
+          <h1 className="text-[28px] md:text-3xl font-display font-semibold leading-[1.15] tracking-tight mb-5 text-text-primary">
+            AI &amp; automation that runs your business — built and shipped by founders.
           </h1>
-          <p className="text-lg md:text-base text-muted mb-10 max-w-xl leading-relaxed">
-            Nexora designs and ships AI-powered products across language
-            learning, healthcare, and business automation — not concepts,
-            live software.
+          <p className="text-base md:text-base text-muted mb-8 max-w-xl leading-relaxed">
+            Custom AI chatbots and automation that answer customers, book calls, and cut manual work — live in weeks, not months. Need the website or software around it? We build that too.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="#products"
+              href={CALENDAR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary flex items-center gap-2 focus-visible-ring"
             >
-              Explore Products <ArrowRight size={16} aria-hidden="true" />
+              {CTA_LABEL} <ArrowRight size={16} aria-hidden="true" />
             </a>
-            <button
-              onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
+            <a
+              href="#products"
               className="flex items-center gap-2 px-6 py-3.5 rounded-pill font-medium border border-border hover:border-accent transition-colors duration-150 focus-visible-ring"
             >
-              <Play size={16} aria-hidden="true" /> Talk to Nexora Team
-            </button>
+              See what we&apos;ve shipped
+            </a>
           </div>
         </motion.div>
 
@@ -92,7 +96,7 @@ export function Hero() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <TrendingUp size={16} className="text-accent" aria-hidden="true" />
+            <TrendingUp size={16} className="text-muted" aria-hidden="true" />
             <div>
               <div className="text-sm font-semibold leading-none">24/7</div>
               <div className="text-[10px] text-muted leading-none mt-1">Always responding</div>
@@ -104,7 +108,7 @@ export function Hero() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
           >
-            <Zap size={16} className="text-accent" aria-hidden="true" />
+            <Zap size={16} className="text-muted" aria-hidden="true" />
             <div>
               <div className="text-sm font-semibold leading-none">Instant</div>
               <div className="text-[10px] text-muted leading-none mt-1">Lead qualification</div>
@@ -135,7 +139,9 @@ export function Hero() {
               </div>
               <div className="border border-border rounded-md rounded-tl-none p-3 text-sm max-w-[85%] min-h-[44px]">
                 {typed}
-                <span className="inline-block w-[2px] h-[14px] bg-current ml-0.5 align-middle animate-pulse" aria-hidden="true" />
+                {isTypingActive && (
+                  <span className="inline-block w-[2px] h-[14px] bg-current ml-0.5 align-middle animate-pulse" aria-hidden="true" />
+                )}
               </div>
             </div>
 

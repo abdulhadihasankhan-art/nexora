@@ -28,7 +28,7 @@ export function FAQ() {
       />
       <div className="max-w-[800px] mx-auto">
         <div className="max-w-xl mb-12">
-          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
+          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             FAQ
           </div>
           <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
@@ -49,7 +49,7 @@ export function FAQ() {
                 >
                   <span className="font-medium pr-4">{item.q}</span>
                   <motion.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.2 }}>
-                    <Plus size={18} className="text-accent shrink-0" aria-hidden="true" />
+                    <Plus size={18} className="text-muted shrink-0" aria-hidden="true" />
                   </motion.span>
                 </button>
                 <motion.div
