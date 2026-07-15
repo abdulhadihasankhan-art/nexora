@@ -110,15 +110,15 @@ export const FAQS: FaqItem[] = [
   },
   {
     q: "How is my data handled?",
-    a: "Data is encrypted in transit and at rest, isolated per user, and never sold to third parties. Some approval flows are manually reviewed rather than automated.",
+    a: "Data is encrypted in transit and at rest, isolated per user, and never sold to third parties.",
   },
   {
     q: "How do I get started?",
-    a: "Download the relevant app, or use the contact form below for business automation or enterprise inquiries.",
+    a: "Book a free strategy call. We'll map your project and send a proposal. Looking for Fluide AI or GermanFluide? Find them on the App Store or Play Store.",
   },
   {
     q: "Do you take enterprise or partnership inquiries?",
-    a: "Yes reach out through the contact section and we'll follow up directly.",
+    a: "Yes, book a free strategy call and we'll follow up directly.",
   },
 ];
 
