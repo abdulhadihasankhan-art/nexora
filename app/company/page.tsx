@@ -54,7 +54,7 @@ const FOCUS_AREAS = [
 
 export default function CompanyPage() {
   return (
-    <main className="bg-ink text-text-primary pb-24 md:pb-0">
+    <main className="bg-ink text-text-primary">
       {/* HERO */}
       <section className="relative max-w-[1280px] mx-auto px-6 pt-40 pb-24 md:pt-48 md:pb-32 text-center overflow-hidden">
         <div
