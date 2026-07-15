@@ -38,24 +38,24 @@ export const PRODUCTS: Product[] = [
   {
     name: "GermanFluide",
     tag: "German · Classrooms",
-    desc: "German learning with live classes and role-based classrooms for Indian students.",
+    desc: "German learning with live classes and role based classrooms for Indian students.",
     initial: "G",
     stat: "13 adaptive learning modes",
   },
   {
     name: "Medicor AI",
     tag: "Healthcare · In development",
-    desc: "AI-assisted medical guidance, built across regulatory tiers.",
+    desc: "AI assisted medical guidance, built across regulatory tiers.",
     initial: "M",
     stat: "In development",
     inDevelopment: true,
   },
   {
     name: "Nexora Automation",
-    tag: "Business · WhatsApp-native",
-    desc: "AI sales automation for local businesses — chatbots, CRM, and auto-proposals.",
+    tag: "Business · WhatsApp native",
+    desc: "AI sales automation for local businesses — chatbots, CRM, and auto proposals.",
     initial: "N",
-    stat: "One-time pricing model",
+    stat: "One time pricing model",
   },
 ];
 
@@ -67,19 +67,19 @@ export interface Industry {
 
 export const INDUSTRIES: Record<string, Industry> = {
   EdTech: {
-    desc: "Language learning platforms built for real exam prep and classroom delivery — from TEF/TCF conversation practice to role-based German classrooms.",
+    desc: "Language learning platforms built for real exam prep and classroom delivery — from TEF/TCF conversation practice to role based German classrooms.",
     products: ["Fluide AI", "GermanFluide"],
   },
   Healthcare: {
-    desc: "AI-assisted medical guidance organized into clear regulatory tiers, built with privacy and safety as non-negotiables.",
+    desc: "AI assisted medical guidance organized into clear regulatory tiers, built with privacy and safety as non negotiables.",
     products: ["Medicor AI"],
   },
   "SMB & Real Estate": {
-    desc: "WhatsApp-native automation for local businesses — chatbots, CRM, and voice AI with one-time pricing.",
+    desc: "WhatsApp native automation for local businesses — chatbots, CRM, and voice AI with one time pricing.",
     products: ["Nexora Automation Suite"],
   },
   "Website Development": {
-    desc: "Modern websites built for every business — from startups and local businesses to schools, healthcare, restaurants, e-commerce, real estate, portfolios, and enterprise companies. Fast, responsive, SEO-friendly, and designed to convert visitors into customers.",
+    desc: "Modern websites built for every business — from startups and local businesses to schools, healthcare, restaurants, ecommerce, real estate, portfolios, and enterprise companies. Fast, responsive, SEO friendly, and designed to convert visitors into customers.",
     products: ["Custom Websites"],
     cta: true,
   },
@@ -94,15 +94,15 @@ export interface FaqItem {
 export const FAQS: FaqItem[] = [
   {
     q: "What does Nexora actually build?",
-    a: "AI-powered products — currently language learning apps (Fluide AI, GermanFluide) and business automation tools, with a healthcare AI product in development.",
+    a: "AI powered products — currently language learning apps (Fluide AI, GermanFluide) and business automation tools, with a healthcare AI product in development.",
   },
   {
     q: "How is pricing structured?",
-    a: "Every project is scoped individually — no fixed pricing. Custom work is milestone-based, so you never pay for work you haven't seen. Book a free call for a tailored proposal.",
+    a: "Every project is scoped individually — no fixed pricing. Custom work is milestone based, so you never pay for work you haven't seen. Book a free call for a tailored proposal.",
   },
   {
     q: "How does payment work?",
-    a: "Milestone-based, in three parts: 15% at Discovery (we map your scope and architecture — you keep the plan even if you don't continue), 40% once you've seen a working first build, and 45% at delivery when it's live and handed off.",
+    a: "Milestone based, in three parts: 15% at Discovery (we map your scope and architecture — you keep the plan even if you don't continue), 40% once you've seen a working first build, and 45% at delivery when it's live and handed off.",
   },
   {
     q: "What's your refund policy?",
