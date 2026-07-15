@@ -19,7 +19,7 @@ export function Services() {
           <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             Services
           </div>
-          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight">
             What we do.
           </h2>
         </div>
