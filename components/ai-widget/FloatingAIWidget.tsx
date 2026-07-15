@@ -259,7 +259,7 @@ export function FloatingAIWidget() {
           setOpen((v) => !v);
         }}
         aria-label={open ? "Close Nexora AI" : "Open Nexora AI"}
-        className="fixed bottom-6 right-6 z-[90] w-16 h-16 rounded-full flex items-center justify-center
+        className="fixed bottom-24 right-6 md:bottom-6 z-[90] w-16 h-16 rounded-full flex items-center justify-center
                    bg-accent text-white shadow-lg focus-visible-ring"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -289,7 +289,7 @@ export function FloatingAIWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.25, ease: EASE }}
-            className="fixed bottom-24 right-6 z-[90] w-[calc(100vw-3rem)] max-w-[400px] h-[70vh] max-h-[600px]
+            className="fixed bottom-[168px] right-6 md:bottom-24 z-[90] w-[calc(100vw-3rem)] max-w-[400px] h-[70vh] max-h-[600px]
                        rounded-lg border border-border bg-bg-secondary/95 backdrop-blur-xl shadow-lg
                        flex flex-col overflow-hidden"
           >
