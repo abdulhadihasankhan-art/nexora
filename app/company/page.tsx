@@ -68,7 +68,7 @@ export default function CompanyPage() {
           <div className="inline-block text-xs font-medium tracking-widest uppercase mb-6 px-3 py-1 rounded-pill border border-border text-muted">
             Company
           </div>
-          <h1 className="text-4xl md:text-3xl font-display font-semibold leading-[1.1] tracking-tight mb-6">
+          <h1 className="text-4xl md:text-3xl font-display font-semibold leading-[1.1] uppercase tracking-tight mb-6">
             Building AI products that solve real problems.
           </h1>
           <p className="text-lg text-muted mb-10 leading-relaxed">
@@ -92,7 +92,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
               About Nexora
             </div>
-            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight mb-6">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight mb-6">
               We build production-ready software, not prototypes.
             </h2>
             <p className="text-muted text-lg leading-relaxed">
@@ -119,7 +119,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
               What We Build
             </div>
-            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight">
               Five capabilities, one team.
             </h2>
           </div>
@@ -143,7 +143,7 @@ export default function CompanyPage() {
             <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
               Why Nexora
             </div>
-            <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
+            <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight">
               Why businesses choose Nexora.
             </h2>
           </div>
@@ -163,7 +163,7 @@ export default function CompanyPage() {
       {/* CTA */}
       <section className="py-32 px-6 bg-accent">
         <div className="max-w-[800px] mx-auto text-center">
-          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight text-white mb-8">
             Let&apos;s build something exceptional together.
           </h2>
           <a
