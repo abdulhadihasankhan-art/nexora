@@ -16,7 +16,7 @@ const REASONS: Reason[] = [
     icon: User,
     title: "Founder led, deliberately small",
     proof:
-      "We're a senior team of five. That's a choice — fewer handoffs, faster shipping, direct access to the people building your product. We take on a limited number of projects at a time so each one ships properly.",
+      "We're a senior team of five. That's a choice fewer handoffs, faster shipping, direct access to the people building your product. We take on a limited number of projects at a time so each one ships properly.",
   },
   { icon: Database, title: "Built on real usage", proof: "Features shaped by actual student conversations, not assumptions." },
 ];
