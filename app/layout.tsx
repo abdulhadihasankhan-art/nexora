@@ -4,19 +4,27 @@ import { ThemeProvider } from "@/hooks/useTheme";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingAIWidget } from "@/components/ai-widget/FloatingAIWidget";
+import { StickyMobileCTA } from "@/components/ui/StickyMobileCTA";
 import "./globals.css";
 
 const SITE_URL = "https://nexoratech.example.com"; // replace with real domain
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Nexora Technologies — AI products, shipped",
+  title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
   description:
-    "Nexora designs and ships AI-powered products across language learning, healthcare, and business automation.",
+    "We build custom AI chatbots, WhatsApp automation & software for growing businesses — shipped fast by founders, not agencies. Book a free strategy call.",
+  keywords: [
+    "AI chatbot development company",
+    "WhatsApp automation for business",
+    "custom AI automation services",
+    "hire AI developers",
+    "AI automation agency",
+  ],
   openGraph: {
-    title: "Nexora Technologies — AI products, shipped",
+    title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
     description:
-      "AI-powered products across language learning, healthcare, and business automation — not concepts, live software.",
+      "Custom AI chatbots, WhatsApp automation, and software for growing businesses — shipped fast by founders, not agencies.",
     url: SITE_URL,
     siteName: "Nexora Technologies",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -25,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexora Technologies — AI products, shipped",
+    title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
     description:
-      "AI-powered products across language learning, healthcare, and business automation.",
+      "Custom AI chatbots, WhatsApp automation, and software for growing businesses — shipped fast by founders.",
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
@@ -61,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Footer />
           <FloatingAIWidget />
+          <StickyMobileCTA />
         </ThemeProvider>
       </body>
     </html>
