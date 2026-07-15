@@ -20,7 +20,7 @@ const INTRO_TEXT =
 
 const QUICK_REPLIES = ["AI Automation", "Website Development", CTA_LABEL];
 
-// Fallback only — used if ElevenLabs isn't configured or fails.
+// Fallback only used if ElevenLabs isn't configured or fails.
 function speakBrowserFallback(text: string, onEnd: () => void) {
   if (typeof window === "undefined" || !window.speechSynthesis) return onEnd();
   window.speechSynthesis.cancel();
@@ -49,15 +49,15 @@ export function FloatingAIWidget() {
   const audioChunksRef = useRef<Blob[]>([]);
   const introTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  // Tracks whether the message currently being answered was sent via mic —
+  // Tracks whether the message currently being answered was sent via mic
   // if so, the reply always plays as voice regardless of the manual toggle.
   const lastInputWasVoiceRef = useRef(false);
 
-  // Streams audio straight from /api/tts (ElevenLabs) — playback starts as
+  // Streams audio straight from /api/tts (ElevenLabs) playback starts as
   // soon as the browser has enough of the first chunk buffered, not after
   // the whole clip is generated. Falls back to browser TTS on any failure.
   // iOS Safari only allows audio.play() to work reliably when it's first
-  // called synchronously inside a real tap — after that, the SAME element
+  // called synchronously inside a real tap after that, the SAME element
   // can keep playing even from later async code (like our AI reply arriving
   // after a network round-trip). So we "unlock" one persistent element the
   // moment the visitor taps mic or send, before any async work starts.
@@ -96,7 +96,7 @@ export function FloatingAIWidget() {
   }, []);
 
   // Auto-type the intro once the widget is first opened, unless the
-  // visitor has already interacted (typed/mic/send) — per spec, intro
+  // visitor has already interacted (typed/mic/send) per spec, intro
   // stops permanently the instant a real interaction happens.
   useEffect(() => {
     if (!open || userInteracted || messages.length > 0) return;
@@ -143,7 +143,7 @@ export function FloatingAIWidget() {
           body: JSON.stringify({ messages: nextMessages }),
         });
         const data = await res.json();
-        const reply: string = data.reply ?? "Sorry, something went wrong on my end — try again in a moment.";
+        const reply: string = data.reply ?? "Sorry, something went wrong on my end try again in a moment.";
         setMessages((m) => [...m, { role: "assistant", content: reply }]);
         setLastAiText(reply);
         const shouldSpeak = voiceOn || lastInputWasVoiceRef.current;
@@ -155,7 +155,7 @@ export function FloatingAIWidget() {
       } catch {
         setMessages((m) => [
           ...m,
-          { role: "assistant", content: "Connection issue — please try again." },
+          { role: "assistant", content: "Connection issue please try again." },
         ]);
       } finally {
         setThinking(false);
@@ -164,7 +164,7 @@ export function FloatingAIWidget() {
     [messages, stopIntroForever, voiceOn, playVoice]
   );
 
-  // Fires a chip's topic as the first real message once the widget is open —
+  // Fires a chip's topic as the first real message once the widget is open
   // this is what makes tapping "WhatsApp automation" on the Hero card
   // actually ask that question, not just open an empty chat.
   useEffect(() => {
@@ -176,13 +176,13 @@ export function FloatingAIWidget() {
 
   const toggleMic = () => {
     stopIntroForever();
-    unlockAudio(); // must run synchronously, inside this tap — before anything async
+    unlockAudio(); // must run synchronously, inside this tap before anything async
     const SpeechRecognition =
       typeof window !== "undefined" &&
       ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
 
     if (SpeechRecognition) {
-      // Chrome / Edge path — native, instant, free.
+      // Chrome / Edge path native, instant, free.
       if (listening) {
         recognitionRef.current?.stop();
         setListening(false);
@@ -203,7 +203,7 @@ export function FloatingAIWidget() {
       return;
     }
 
-    // Safari / iOS path — no native SpeechRecognition support at all here,
+    // Safari / iOS path no native SpeechRecognition support at all here,
     // so we record audio directly and transcribe it via Groq Whisper.
     toggleRecordingFallback();
   };
@@ -246,7 +246,7 @@ export function FloatingAIWidget() {
       recorder.start();
       setListening(true);
     } catch {
-      alert("We need microphone access to hear you — check your browser permissions.");
+      alert("We need microphone access to hear you check your browser permissions.");
     }
   };
 
@@ -377,7 +377,7 @@ export function FloatingAIWidget() {
                 </div>
               )}
 
-              {/* Quick replies — only before the visitor has interacted */}
+              {/* Quick replies only before the visitor has interacted */}
               {!userInteracted && introDone && messages.length === 0 && (
                 <div className="flex flex-wrap gap-2 pt-2">
                   {QUICK_REPLIES.map((q) => (
