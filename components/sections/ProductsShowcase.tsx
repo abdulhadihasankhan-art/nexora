@@ -17,7 +17,7 @@ export function ProductsShowcase() {
             Real AI products we&apos;ve shipped.
           </h2>
           <p className="text-muted text-lg">
-            Live software serving real users — proof we build AI that works, not demos.
+            Live software serving real users proof we build AI that works, not demos.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export function ProductsShowcase() {
               key={p.name}
               tabIndex={0}
               role="button"
-              aria-label={`${p.name} — ${p.desc}`}
+              aria-label={`${p.name} ${p.desc}`}
               className="group relative rounded-lg border border-border bg-bg-secondary p-6 cursor-pointer focus-visible-ring"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
