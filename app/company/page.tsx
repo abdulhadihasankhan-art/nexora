@@ -4,7 +4,7 @@ import { ArrowRight, Bot, Globe, Workflow, GraduationCap, Code2, Palette, Sparkl
 import { CALENDAR_URL, CTA_LABEL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Company — Nexora Technologies",
+  title: "Company Nexora Technologies",
   description:
     "Nexora develops AI software and modern digital solutions for businesses, education, healthcare, and organizations worldwide.",
 };
@@ -96,8 +96,8 @@ export default function CompanyPage() {
               We build production-ready software, not prototypes.
             </h2>
             <p className="text-muted text-lg leading-relaxed">
-              Nexora is an AI technology company focused on shipping real, working products —
-              not pitch decks or proof-of-concepts. Our work spans AI products, website
+              Nexora is an AI technology company focused on shipping real, working products
+              not pitch decks or proof of concepts. Our work spans AI products, website
               development, business automation, language learning solutions, and healthcare AI,
               built with the same production standards regardless of industry.
             </p>
