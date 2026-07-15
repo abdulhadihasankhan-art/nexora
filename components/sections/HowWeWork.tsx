@@ -13,7 +13,7 @@ const STEPS = [
   {
     icon: Hammer,
     title: "We build & ship",
-    desc: "Founder-led, in weeks. You see progress along the way, not silence until a big reveal.",
+    desc: "Founder led, in weeks. You see progress along the way, not silence until a big reveal.",
   },
   {
     icon: Rocket,
@@ -30,7 +30,7 @@ export function HowWeWork() {
           <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             How We Work
           </div>
-          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight">
             Three steps. No handoffs.
           </h2>
         </div>
