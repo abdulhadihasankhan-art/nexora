@@ -8,7 +8,7 @@ const STEPS = [
   {
     icon: PhoneCall,
     title: "Free strategy call",
-    desc: "We map your bottleneck and where AI pays off fastest — no generic pitch, just your actual workflow.",
+    desc: "We map your bottleneck and where AI pays off fastest no generic pitch, just your actual workflow.",
   },
   {
     icon: Hammer,
@@ -18,7 +18,7 @@ const STEPS = [
   {
     icon: Rocket,
     title: "Live & supported",
-    desc: "It goes live, and you talk directly to the people who built it — not an account manager.",
+    desc: "It goes live, and you talk directly to the people who built it not an account manager.",
   },
 ];
 
