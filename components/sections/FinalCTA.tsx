@@ -6,7 +6,7 @@ export function FinalCTA() {
   return (
     <section className="py-32 px-6 bg-accent">
       <div className="max-w-[800px] mx-auto text-center">
-        <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+        <h2 className="text-[26px] md:text-2xl font-display font-semibold uppercase tracking-tight text-white mb-8">
           Ready to build with AI that ships?
         </h2>
         <a
