@@ -9,7 +9,7 @@ import { Industries } from "@/components/sections/Industries";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
-// SoftwareApplication schema — covers the product suite for rich results
+// SoftwareApplication schema covers the product suite for rich results
 const softwareJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -26,7 +26,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
-      <main id="main-content" className="bg-ink text-text-primary pb-24 md:pb-0">
+      <main id="main-content" className="bg-ink text-text-primary">
         <Hero />
         <SocialProof />
         <Services />
