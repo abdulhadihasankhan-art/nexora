@@ -2,6 +2,8 @@
 
 export const WHATSAPP_URL = "https://wa.me/919389599735";
 
+export const CTA_LABEL = "Book a Free AI Strategy Call";
+
 export const CALENDAR_URL = "https://calendar.app.google/zAUPQk9YVVZ4Zgiz6";
 
 export interface NavLink {
