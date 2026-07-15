@@ -98,7 +98,15 @@ export const FAQS: FaqItem[] = [
   },
   {
     q: "How is pricing structured?",
-    a: "Products use their own pricing (subscription or one-time depending on the product). Custom automation work is quoted per project.",
+    a: "Every project is scoped individually — no fixed pricing. Custom work is milestone-based, so you never pay for work you haven't seen. Book a free call for a tailored proposal.",
+  },
+  {
+    q: "How does payment work?",
+    a: "Milestone-based, in three parts: 15% at Discovery (we map your scope and architecture — you keep the plan even if you don't continue), 40% once you've seen a working first build, and 45% at delivery when it's live and handed off.",
+  },
+  {
+    q: "What's your refund policy?",
+    a: "We don't run a traditional refund policy — milestones protect both sides instead, which is standard for international development work. You approve each stage before paying for the next.",
   },
   {
     q: "How is my data handled?",
