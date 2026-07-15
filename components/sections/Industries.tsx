@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { INDUSTRIES, CALENDAR_URL } from "@/lib/constants";
+import { INDUSTRIES, CALENDAR_URL, CTA_LABEL } from "@/lib/constants";
 
 export function Industries() {
   const [active, setActive] = useState<string>("EdTech");
@@ -13,10 +13,10 @@ export function Industries() {
     <section id="industries" className="py-24 px-6">
       <div className="max-w-[1280px] mx-auto">
         <div className="max-w-xl mb-12">
-          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
+          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             Industries
           </div>
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
             Where Nexora fits.
           </h2>
         </div>
@@ -68,7 +68,7 @@ export function Industries() {
                   rel="noopener noreferrer"
                   className="btn-primary inline-flex items-center focus-visible-ring"
                 >
-                  Book a Free Call
+                  {CTA_LABEL}
                 </a>
                 <p className="text-muted text-sm mt-3">
                   Not sure which website is right for your business? Let&apos;s talk.
