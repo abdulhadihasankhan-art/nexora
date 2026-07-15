@@ -7,7 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS, CALENDAR_URL } from "@/lib/constants";
+import { NAV_LINKS, CALENDAR_URL, CTA_LABEL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -15,7 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  // Theme toggle removed — site is permanently dark with white text.
+  // Theme toggle removed site is permanently dark with white text.
   const pathname = usePathname();
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export function Navbar() {
   const ticking = useRef(false);
 
   // Single rAF-throttled scroll handler drives both the scrolled state
-  // and the progress bar — avoids two listeners doing redundant work.
+  // and the progress bar avoids two listeners doing redundant work.
   useEffect(() => {
     const onScroll = () => {
       if (ticking.current) return;
@@ -102,7 +102,7 @@ export function Navbar() {
           animate={{ paddingTop: scrolled ? 14 : 24, paddingBottom: scrolled ? 14 : 24 }}
           transition={{ duration: 0.3, ease: EASE }}
         >
-          {/* Logo — always the fixed left anchor of the header row */}
+          {/* Logo always the fixed left anchor of the header row */}
           <Link href="/" aria-label="Nexora home" className="flex items-center">
             <Image
               src="/logo/nexora-mark.png"
@@ -147,7 +147,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="btn-primary focus-visible-ring"
             >
-              Book a Demo
+              {CTA_LABEL}
             </a>
           </div>
 
@@ -161,7 +161,7 @@ export function Navbar() {
       {/*
         FIX: this button previously lived inside <nav>, which creates its
         own stacking context at z-50. A z-index set on a child only competes
-        within that context — it does NOT out-rank a sibling element outside
+        within that context it does NOT out-rank a sibling element outside
         <nav> that has a higher z-index (the overlay, z-[60]). That mismatch
         is why the close icon visually disappeared once the overlay mounted.
         Rendering the button as a top-level fixed element with z-[100],
@@ -254,7 +254,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: 0.05 + NAV_LINKS.length * 0.05, ease: EASE }}
             >
-              Book a Demo
+              {CTA_LABEL}
             </motion.a>
           </motion.div>
         )}
