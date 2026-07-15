@@ -7,7 +7,7 @@ import { ArrowRight, MessageCircle, TrendingUp, Zap, Sparkles } from "lucide-rea
 import { CTA_LABEL, CALENDAR_URL } from "@/lib/constants";
 
 const RESPONSE_TEXT =
-  "Yes — we connect directly to WhatsApp Business and answer customer questions instantly, 24/7. Want to see how it works?";
+  "Yes we connect directly to WhatsApp Business and answer customer questions instantly, 24/7. Want to see how it works?";
 
 const SUGGESTION_CHIPS = ["WhatsApp automation", "CRM integration", "Email automation"];
 
@@ -62,10 +62,10 @@ export function Hero() {
             AI Automation, Shipped
           </div>
           <h1 className="text-[28px] md:text-3xl font-display font-semibold leading-[1.15] uppercase tracking-tight mb-5 text-text-primary">
-            AI &amp; automation that runs your business — built and shipped by founders.
+            AI &amp; automation that runs your business built and shipped by founders.
           </h1>
           <p className="text-base md:text-base text-muted mb-8 max-w-xl leading-relaxed">
-            Custom AI chatbots and automation that answer customers, book calls, and cut manual work — live in weeks, not months. Need the website or software around it? We build that too.
+            Custom AI chatbots and automation that answer customers, book calls, and cut manual work live in weeks, not months. Need the website or software around it? We build that too.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <a
@@ -84,7 +84,7 @@ export function Hero() {
             </a>
           </div>
           <p className="text-xs text-muted mt-4">
-            Milestone-based payments — you never pay for work you haven&apos;t seen.
+            Milestone-based payments you never pay for work you haven&apos;t seen.
           </p>
         </motion.div>
 
@@ -167,7 +167,7 @@ export function Hero() {
             onClick={() => window.dispatchEvent(new Event("open-nexora-ai"))}
             className="text-xs text-muted mt-3 text-center w-full underline decoration-dotted underline-offset-4 hover:text-text-primary transition-colors focus-visible-ring"
           >
-            This is the same AI that powers the chat bubble — tap it to try the real thing.
+            This is the same AI that powers the chat bubble tap it to try the real thing.
           </button>
         </motion.div>
       </div>
