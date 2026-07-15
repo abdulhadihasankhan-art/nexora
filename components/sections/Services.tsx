@@ -2,31 +2,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Workflow, Smartphone, Lightbulb, LucideIcon } from "lucide-react";
+import { Bot, Workflow, Lightbulb, Layers } from "lucide-react";
 
-interface Service {
-  icon: LucideIcon;
-  name: string;
-  desc: string;
-}
-
-const SERVICES: Service[] = [
-  { icon: Bot, name: "AI Integration", desc: "Embed AI capabilities into your existing product or workflow." },
-  { icon: Workflow, name: "Custom Automation", desc: "WhatsApp, CRM, and voice automation built for your business." },
-  { icon: Smartphone, name: "Mobile App Development", desc: "Flutter-based apps, from prototype to app store." },
-  { icon: Lightbulb, name: "AI Consulting", desc: "Strategy and technical guidance for teams adopting AI." },
+const SERVICES = [
+  { icon: Bot, name: "AI Applications & Chatbots", desc: "Custom AI assistants that answer customers, qualify leads, and work 24/7." },
+  { icon: Workflow, name: "Business & Workflow Automation", desc: "WhatsApp, CRM, and internal automation that cuts manual, repetitive work." },
+  { icon: Lightbulb, name: "AI Integration & Consulting", desc: "Strategy and hands-on implementation for teams adopting AI." },
+  { icon: Layers, name: "Full product build", desc: "Need the website, app, or custom software around your AI? We build it in-house — one team, no handoffs." },
 ];
 
 export function Services() {
   return (
-    <section className="py-24 px-6">
+    <section id="services" className="py-24 px-6">
       <div className="max-w-[1280px] mx-auto">
         <div className="max-w-xl mb-16">
-          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-accent text-accent">
+          <div className="inline-block text-xs font-medium tracking-widest uppercase mb-4 px-3 py-1 rounded-pill border border-border text-muted">
             Services
           </div>
-          <h2 className="text-3xl md:text-2xl font-display font-semibold tracking-tight">
-            Capabilities you can hire us for.
+          <h2 className="text-[26px] md:text-2xl font-display font-semibold tracking-tight">
+            What we do.
           </h2>
         </div>
 
@@ -40,7 +34,7 @@ export function Services() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
             >
-              <s.icon size={22} className="text-accent mb-4" aria-hidden="true" />
+              <s.icon size={22} className="text-muted mb-4" aria-hidden="true" />
               <h3 className="font-medium mb-2">{s.name}</h3>
               <p className="text-muted text-sm leading-relaxed">{s.desc}</p>
             </motion.div>
