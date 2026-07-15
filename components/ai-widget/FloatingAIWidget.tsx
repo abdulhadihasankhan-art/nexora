@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, X, Mic, Send, Volume2, VolumeX, RotateCcw, Square,
 } from "lucide-react";
-import { CALENDAR_URL } from "@/lib/constants";
+import { CALENDAR_URL, CTA_LABEL } from "@/lib/constants";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -18,7 +18,7 @@ interface Message {
 const INTRO_TEXT =
   "Hi 👋 We're the team at Nexora. We help businesses automate sales, customer support, and operations using AI. Ask us anything.";
 
-const QUICK_REPLIES = ["AI Automation", "Website Development", "Book a free call"];
+const QUICK_REPLIES = ["AI Automation", "Website Development", CTA_LABEL];
 
 // Fallback only — used if ElevenLabs isn't configured or fails.
 function speakBrowserFallback(text: string, onEnd: () => void) {
