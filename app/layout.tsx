@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
   description:
-    "We build custom AI chatbots, WhatsApp automation & software for growing businesses — shipped fast by founders, not agencies. Book a free strategy call.",
+    "We build custom AI chatbots, WhatsApp automation & software for growing businesses shipped fast by founders, not agencies. Book a free strategy call.",
   keywords: [
     "AI chatbot development company",
     "WhatsApp automation for business",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
     description:
-      "Custom AI chatbots, WhatsApp automation, and software for growing businesses — shipped fast by founders, not agencies.",
+      "Custom AI chatbots, WhatsApp automation, and software for growing businesses shipped fast by founders, not agencies.",
     url: SITE_URL,
     siteName: "Nexora Technologies",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Automation & Chatbot Development Agency | Nexora Technologies",
     description:
-      "Custom AI chatbots, WhatsApp automation, and software for growing businesses — shipped fast by founders.",
+      "Custom AI chatbots, WhatsApp automation, and software for growing businesses shipped fast by founders.",
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
